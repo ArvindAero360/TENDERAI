@@ -321,16 +321,20 @@ main{flex:1;padding:28px 28px 80px;max-width:100%;width:100%;}
       </div>
     </div>
 
-    <div id="post-section">
-      <div style="display:flex;flex-direction:column;align-items:center;margin-top:32px;margin-bottom:48px;gap:14px;">
-        <button class="btn-post" id="post-btn" onclick="doPost()">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Submits
-        </button>
-        <div class="post-status" id="post-status">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" id="post-icon"></svg>
-          <div><div id="post-msg" style="font-weight:600"></div><div class="post-status-detail" id="post-detail"></div></div>
+      <div id="post-section">
+        <div style="display:flex;flex-direction:column;align-items:center;margin-top:32px;margin-bottom:48px;gap:14px;">
+          <button class="btn-post" id="post-btn" onclick="doPost()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>Submit
+          </button>
+          <div class="post-status" id="post-status">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" id="post-icon"></svg>
+            <div><div id="post-msg" style="font-weight:600"></div><div class="post-status-detail" id="post-detail"></div></div>
+          </div>
+          <button class="btn btn-ghost" id="upload-diff-btn" onclick="doNewTender()" style="border-radius:9999px;font-size:13px;padding:9px 22px;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            Upload a different tender
+          </button>
         </div>
-      </div>
     </div>
   </main>
 </div>
@@ -460,17 +464,17 @@ function showResults(fname){
   document.getElementById('uz-title').textContent = 'Extraction complete';
   document.getElementById('uz-sub').textContent   = 'Fields extracted successfully from ' + fname;
   document.getElementById('uz-types').style.display = 'none';
-  var existing = document.getElementById('upload-diff-btn');
-  if(!existing){
-    var btn = document.createElement('button');
-    btn.id = 'upload-diff-btn'; btn.className = 'btn btn-ghost';
-    btn.style.cssText = 'margin-top:16px;border-radius:9999px;font-size:13px;padding:9px 22px;';
-    btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg> Upload a different tender';
-    btn.onclick = function(e){ e.preventDefault(); resetUpload(); document.getElementById('results').classList.remove('show'); document.getElementById('post-section').style.display = 'none'; document.getElementById('upload-zone').style.display = ''; btn.remove(); };
-    document.querySelector('.uz-inner').appendChild(btn);
-  }
   setTimeout(function(){ r.scrollIntoView({ behavior:'smooth', block:'start' }); }, 80);
 }
+
+window.doNewTender = function(){
+  resetUpload();
+  document.getElementById('results').classList.remove('show');
+  document.getElementById('post-section').style.display = 'none';
+  document.getElementById('upload-zone').style.display = '';
+  clearPostStatus();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+};
 
 window.toggleSec = function(id){ document.getElementById(id).classList.toggle('closed'); };
 
