@@ -25,7 +25,7 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
 ]
 
-ROOT_URLCONF = 'tenderiq_django.urls'
+ROOT_URLCONF = 'tenderiq_db.urls'
 
 TEMPLATES = [
     {
@@ -40,7 +40,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'tenderiq_django.wsgi.application'
+WSGI_APPLICATION = 'tenderiq_db.wsgi.application'
 
 # ── Database (MySQL — mirrors Flask app) ──────────────────────────────────
 DATABASES = {
