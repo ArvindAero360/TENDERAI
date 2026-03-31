@@ -2,6 +2,7 @@
 TenderIQ Django Settings
 Converted from Flask app — drop-in replacement.
 """
+
 import os
 from pathlib import Path
 
@@ -57,22 +58,35 @@ DATABASES = {
     }
 }
 
-# ── Static files ─────────────────────────────────────────────────────────
+# ── Static files ─────────────────────────────────────────
 STATIC_URL = '/static/'
 
-# ── File upload limit: 50 MB ─────────────────────────────────────────────
+# ── File upload limit: 50 MB ─────────────────────────────
 DATA_UPLOAD_MAX_MEMORY_SIZE  = 50 * 1024 * 1024
 FILE_UPLOAD_MAX_MEMORY_SIZE  = 50 * 1024 * 1024
 
-# ── CORS ─────────────────────────────────────────────────────────────────
+# ── CORS ─────────────────────────────────────────────────
 CORS_ALLOW_ALL_ORIGINS = True
 
-# ── App-specific settings ────────────────────────────────────────────────
+
+# ─────────────────────────────────────────────────────────
+# API URL CONFIG (Switch by commenting)
+# ─────────────────────────────────────────────────────────
+
+# ── Development ──
+# LMSTUDIO_API_URL  = 'http://127.0.0.1:1234'
+# DJANGO_API_URL    = 'http://127.0.0.1:8000/api/create/'
+
+# ── Production ──
 LMSTUDIO_API_URL  = 'http://127.0.0.1:1234'
+DJANGO_API_URL    = 'https://dms.aero360.co.in/api3/api/create/'
+
+
 LMSTUDIO_BASE_URL = f'{LMSTUDIO_API_URL}/v1'
 FALLBACK_MODEL    = 'mistral-nemo-12b-instruct-2407'
 
-DJANGO_API_URL    = 'https://dms.aero360.co.in/api3/api/create/'
-REDIRECT_BASE     = 'https://dms.aero360.co.in/app3/allbid/'
+# Redirect URL
+REDIRECT_BASE = 'https://dms.aero360.co.in/app3/allbid/'
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

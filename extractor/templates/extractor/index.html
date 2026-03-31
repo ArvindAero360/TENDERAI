@@ -405,7 +405,7 @@ function doExtract(){
   var ticker = setInterval(function(){ si = (si+1) % steps.length; statusEl.textContent = steps[si]; }, 1800);
   var fd = new FormData();
   fd.append('file', currentFile);
-  fetch('/extract', { method:'POST', body:fd })
+  fetch('extract/', { method:'POST', body:fd })
     .then(function(r){ if(!r.ok && r.status === 503){ return r.json().then(function(body){ throw new Error('__LMSTUDIO_DOWN__:' + (body.error || '')); }); } return r.json(); })
     .then(function(res){
       clearInterval(ticker);

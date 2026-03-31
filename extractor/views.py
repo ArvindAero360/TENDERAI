@@ -314,7 +314,7 @@ class PostTokenView(View):
             return JsonResponse({
                 'message':      'Token inserted successfully',
                 'token':        token,
-                'redirect_url': 'http://localhost:5000/',
+                'redirect_url': 'https://dms.aero360.co.in/api4/',
             })
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=500)
